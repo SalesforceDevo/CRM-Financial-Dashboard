@@ -23,7 +23,7 @@ public class FinancialRiskCalculator {
 
                 // Adjust scores based on transaction type
                 switch on trns.Transaction_Type__c {
-                    when 'Withdraw' {
+                    when 'Withdrawal' {
                         transactionScore -= trns.Transaction_Amount__c * 0.5; // Negative impact for withdrawals
                     }
                     when 'Transfer' {
