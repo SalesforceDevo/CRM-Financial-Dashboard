@@ -45,22 +45,21 @@
             <axisBinding>y</axisBinding>
             <column>CDF1</column>
         </chartSummaries>
-        <chartType>VerticalColumnStacked</chartType>
+        <chartType>Donut</chartType>
         <enableHoverLabels>false</enableHoverLabels>
-        <expandOthers>true</expandOthers>
-        <groupingColumn>BucketField_12480230</groupingColumn>
+        <expandOthers>false</expandOthers>
+        <groupingColumn>Customers__c$City__c</groupingColumn>
         <legendPosition>Right</legendPosition>
         <location>CHART_BOTTOM</location>
-        <secondaryGroupingColumn>Customers__c$City__c</secondaryGroupingColumn>
         <showAxisLabels>true</showAxisLabels>
         <showPercentage>false</showPercentage>
-        <showTotal>false</showTotal>
+        <showTotal>true</showTotal>
         <showValues>false</showValues>
         <size>Medium</size>
         <summaryAxisRange>Auto</summaryAxisRange>
         <textColor>#000000</textColor>
         <textSize>12</textSize>
-        <title>High Risk Customers Grouped by City,Age</title>
+        <title>High Risk Customers Grouped by City</title>
         <titleColor>#000000</titleColor>
         <titleSize>18</titleSize>
     </chart>
