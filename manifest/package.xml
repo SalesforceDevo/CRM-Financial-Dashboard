@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-    <types>
-        <members>Credit_Cards__c</members>
-        <members>Customers__c</members>
-        <members>Accounts__c</members>
-        <members>Loans__c</members>
-        <members>Transactions__c</members>
-        <name>CustomObject</name>
-    </types>
-    <version>57.0</version>
+   <types>
+       <!-- Report: FraudTransactionReport -->
+       <members>Financial CRM Dashboard/FraudTransactionReport_uw0</members>
+       <name>Report</name>
+   </types>
+   <types>
+       <!-- Dashboard: FraudTransactionsDashboard -->
+       <members>Financial CRM Dashboards/QxHGiPmFJGcykAwODPiLdKpVODkAns</members>
+       <name>Dashboard</name>
+   </types>
+   <version>57.0</version>
 </Package>
