@@ -26,9 +26,40 @@ The MuleSoft integration consists of the following steps:
 ### 2. Apex-Based Risk and Fraud Analysis
 1. **Financial Risk Calculation**:
    - Evaluates a customer’s **credit utilization, transaction types, and account balances** to determine a **Risk Score**.
+   - **Classes Used:**
+     - `FinancialRiskCalculator.cls`
+     - `FinancialRiskBatch.cls`
 2. **Fraud Detection**:
    - Uses **Apex Queueable & Batch classes** to call an **external Flask API** hosted on **Heroku**.
    - API returns a **fraud score**, and transactions are flagged accordingly in **Salesforce (Fraud_Flag__c)**.
+   - **Classes Used:**
+     - `FraudDetectionBatch.cls`
+     - `FraudDetectionQueueable.cls`
+
+---
+
+## How Risk_Score__c and Fraud_Flag__c Are Calculated
+
+### **Risk Score Calculation**
+- **Credit Utilization**: `(Credit Card Balance / Credit Limit) * 0.7`
+- **Transaction Type Weighting**:
+  - **Withdrawals**: `-50%` of transaction amount.
+  - **Transfers**: `+30%` of transaction amount.
+  - **Deposits**: `+100%` of transaction amount.
+- **Account Balance Consideration**:
+  - If **balance after transaction < 100** → `-50 points`.
+  - If **balance after transaction > 100** → `+20 points`.
+- **Final Calculation**:
+  ```math
+  Risk_Score = (credit_utilization * 0.7) + transaction_score
+  ```
+
+### **Fraud Flag Calculation (Fraud_Flag__c)**
+- Fraud detection API evaluates:
+  - **Transaction Type** (`Deposit`, `Withdrawal`, `Transfer`)
+  - **Transaction Amount**
+  - **Account Balance After Transaction**
+- If `fraudScore > 70` → **Fraud_Flag__c = True**.
 
 ---
 
@@ -50,169 +81,35 @@ A **Python Flask API**, hosted on **Heroku**, determines **fraud risk** using tr
     "transactionType": "Withdrawal",
     "accountBalanceAfter": 200
   }
-
-# Fraud Detection API Documentation
-
-## API Endpoint:
-- **Base URL:** `https://fraud-detection-mycrm-b3cc67b1b034.herokuapp.com/fraud-detection`
-- **Method:** `POST`
-- **Content-Type:** `application/json`
+  ```
 
 ---
 
-## Request
+## Screenshots
 
-### **Request Body:**
-The API expects a **JSON payload** containing the following fields:
+### 1. **Number of Fraud Transactions (By Month & Type)**
+📊 **Chart:** Fraud transactions grouped by **month** and **transaction type**  
+![Fraud Transactions by Month and Type](Number-of-Fraudtransactions-GroupedBy-Month,Type.png)
 
-```json
-{
-  "transactionAmount": 5000,
-  "transactionType": "Withdrawal",
-  "accountBalanceAfter": 200
-}
-```
+### 2. **Fraud Transactions (Monthly Summary)**
+📊 **Chart:** Total **fraudulent transactions per month**  
+![Fraud Transactions by Month](Number-of-Fraudtransactions-GroupedBy-Month.png)
 
-| Parameter             | Type    | Required | Description                                      |
-|----------------------|--------|----------|--------------------------------------------------|
-| `transactionAmount`  | Number | ✅ Yes    | The amount involved in the transaction.         |
-| `transactionType`    | String | ✅ Yes    | Type of transaction (`Deposit`, `Withdrawal`, `Transfer`). |
-| `accountBalanceAfter`| Number | ✅ Yes    | The account balance after the transaction.      |
+### 3. **High-Risk Customers (Grouped by Age & City)**
+📊 **Chart:** Distribution of **high-risk customers** across different **age groups** and **cities**  
+![High-Risk Customers](Number-of-High-Risk-Customers-Groupedby-Age,City.png)
 
----
+### 4. **Total Transactions (By Type & Month)**
+📊 **Chart:** Monthly **transaction amounts** based on **transaction type**  
+![Sum of Transactions by Type and Month](Sum-of-Transactions-GroupedBy-Type,Month.png)
 
-## Response
-
-### **Success Response:**
-If the request is valid, the API returns a **JSON response** with the **fraud score** and a **decision** on whether the transaction needs further review.
-
-```json
-{
-  "fraudScore": 80,
-  "decision": "Review"
-}
-```
-
-| Parameter   | Type    | Description                                      |
-|------------|--------|--------------------------------------------------|
-| `fraudScore` | Number | A calculated fraud score based on the rules.   |
-| `decision`  | String | The decision (`Review` or `Approve`) based on the fraud score. |
+### 5. **GitHub Repository Screenshot**
+📸 **Screenshot of Project Files in GitHub**  
+![GitHub Repository Screenshot](Screenshot-2025-01-28-155605.png)
 
 ---
 
-## Fraud Detection Rules:
-The fraud detection API follows predefined **business logic** to calculate the fraud score:
-
-1. **Transaction Type:**
-   - **Deposit** → Low fraud risk (**+10** points).
-   - **Withdrawal** → Medium fraud risk (**+30** points).
-   - **Transfer** → High fraud risk (**+50** points).
-
-2. **Transaction Amount:**
-   - **> $10,000** → **+50** fraud score.
-   - **> $5,000** → **+30** fraud score.
-   - **> $1,000** → **+10** fraud score.
-
-3. **Account Balance After Transaction:**
-   - **Balance < $0** → **+50** fraud score.
-   - **Balance < $500** → **+30** fraud score.
-
-### **Fraud Score Interpretation:**
-- **`fraudScore <= 70`** → `"decision": "Approve"`
-- **`fraudScore > 70`** → `"decision": "Review"`
-
----
-
-## Example API Calls
-
-### **1. Low-Risk Transaction (Deposit)**
-#### **Request**
-```json
-{
-  "transactionAmount": 500,
-  "transactionType": "Deposit",
-  "accountBalanceAfter": 2000
-}
-```
-#### **Response**
-```json
-{
-  "fraudScore": 10,
-  "decision": "Approve"
-}
-```
-
----
-
-### **2. High-Risk Transaction (Large Transfer)**
-#### **Request**
-```json
-{
-  "transactionAmount": 15000,
-  "transactionType": "Transfer",
-  "accountBalanceAfter": 100
-}
-```
-#### **Response**
-```json
-{
-  "fraudScore": 130,
-  "decision": "Review"
-}
-```
-
----
-
-## Error Handling
-
-If there is an error in the request, the API returns an **HTTP 400 Bad Request** response.
-
-#### **Example Error Response**
-```json
-{
-  "error": "Invalid request data"
-}
-```
-
-| Error Code  | Meaning                                      |
-|------------|----------------------------------------------|
-| `400`      | Bad request - missing or invalid parameters. |
-| `500`      | Internal server error. |
-
----
-
-## How to Deploy & Use
-
-### **1. Clone the API Repository**
-```bash
-git clone <repo-link>
-```
-### **2. Navigate to the API Directory**
-```bash
-cd fraud-detection-api
-```
-### **3. Install Dependencies**
-```bash
-pip install flask
-```
-### **4. Run the API Locally**
-```bash
-python app.py
-```
-### **5. Deploy to Heroku**
-```bash
-heroku create
-git push heroku main
-```
-
----
-
-## Technologies Used
-- **Python (Flask)** – Backend API for fraud detection.
-- **Heroku** – Cloud hosting for the API.
-- **Salesforce** – CRM platform integrating fraud detection.
-- **MuleSoft** – Data integration between Oracle and Salesforce.
-- **Apex (Queueable & Batch)** – Calls API from Salesforce.
-
----
-
+## Contributors
+👨‍💻 **[Your Name]**  
+📧 **your.email@example.com**  
+🔗 **[LinkedIn Profile](<your-linkedin-url>)**
