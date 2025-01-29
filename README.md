@@ -165,7 +165,7 @@ I leveraged **my expertise in Salesforce Reports & Dashboards** to create **inte
 - **Dashboard Filters**: Enabling **dynamic data exploration**.
 - **Conditional Formatting**: Highlighting **high-risk transactions**.
 
-💡 **This demonstrates my strong skills in Salesforce reporting and dashboard creation, making complex data more actionable and visually insightful!**
+
 
 
 ## Screenshots
