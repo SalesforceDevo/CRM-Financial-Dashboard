@@ -132,6 +132,30 @@ The fraud detection API follows predefined **business logic** to calculate the f
 ### **Fraud Score Interpretation:**
 - **`fraudScore <= 70`** → `"decision": "Approve"`
 - **`fraudScore > 70`** → `"decision": "Review"`
+  ## How to Deploy & Use
+
+### **1. Clone the API Repository**
+```bash
+git clone <repo-link>
+```
+### **2. Navigate to the API Directory**
+```bash
+cd fraud-detection-api
+```
+### **3. Install Dependencies**
+```bash
+pip install flask
+```
+### **4. Run the API Locally**
+```bash
+python app.py
+```
+### **5. Deploy to Heroku**
+```bash
+heroku create
+git push heroku main
+```
+
 
 ---
 
