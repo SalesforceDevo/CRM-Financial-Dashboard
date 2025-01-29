@@ -63,25 +63,78 @@ The MuleSoft integration consists of the following steps:
 
 ---
 
-## Fraud Detection API
-A **Python Flask API**, hosted on **Heroku**, determines **fraud risk** using transaction details.
+# Fraud Detection API Documentation
 
-### API Features:
-- **Transaction Type Analysis**: Transfers and withdrawals have **higher fraud risk**.
-- **Transaction Amount Monitoring**: Large transactions **increase fraud scores**.
-- **Account Balance Evaluation**: Negative balances **raise fraud flags**.
-
-### API Endpoint:
-- **URL:** `https://fraud-detection-mycrm-b3cc67b1b034.herokuapp.com/fraud-detection`
+## API Endpoint:
+- **Base URL:** `https://fraud-detection-mycrm-b3cc67b1b034.herokuapp.com/fraud-detection`
 - **Method:** `POST`
-- **Request Body:**
-  ```json
-  {
-    "transactionAmount": 5000,
-    "transactionType": "Withdrawal",
-    "accountBalanceAfter": 200
-  }
-  ```
+- **Content-Type:** `application/json`
+
+---
+
+## Request
+
+### **Request Body:**
+The API expects a **JSON payload** containing the following fields:
+
+```json
+{
+  "transactionAmount": 5000,
+  "transactionType": "Withdrawal",
+  "accountBalanceAfter": 200
+}
+```
+
+| Parameter             | Type    | Required | Description                                      |
+|----------------------|--------|----------|--------------------------------------------------|
+| `transactionAmount`  | Number | ✅ Yes    | The amount involved in the transaction.         |
+| `transactionType`    | String | ✅ Yes    | Type of transaction (`Deposit`, `Withdrawal`, `Transfer`). |
+| `accountBalanceAfter`| Number | ✅ Yes    | The account balance after the transaction.      |
+
+---
+
+## Response
+
+### **Success Response:**
+If the request is valid, the API returns a **JSON response** with the **fraud score** and a **decision** on whether the transaction needs further review.
+
+```json
+{
+  "fraudScore": 80,
+  "decision": "Review"
+}
+```
+
+| Parameter   | Type    | Description                                      |
+|------------|--------|--------------------------------------------------|
+| `fraudScore` | Number | A calculated fraud score based on the rules.   |
+| `decision`  | String | The decision (`Review` or `Approve`) based on the fraud score. |
+
+---
+
+## Fraud Detection Rules:
+The fraud detection API follows predefined **business logic** to calculate the fraud score:
+
+1. **Transaction Type:**
+   - **Deposit** → Low fraud risk (**+10** points).
+   - **Withdrawal** → Medium fraud risk (**+30** points).
+   - **Transfer** → High fraud risk (**+50** points).
+
+2. **Transaction Amount:**
+   - **> $10,000** → **+50** fraud score.
+   - **> $5,000** → **+30** fraud score.
+   - **> $1,000** → **+10** fraud score.
+
+3. **Account Balance After Transaction:**
+   - **Balance < $0** → **+50** fraud score.
+   - **Balance < $500** → **+30** fraud score.
+
+### **Fraud Score Interpretation:**
+- **`fraudScore <= 70`** → `"decision": "Approve"`
+- **`fraudScore > 70`** → `"decision": "Review"`
+
+---
+
 
 ---
 
