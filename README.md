@@ -103,9 +103,7 @@ A **Python Flask API**, hosted on **Heroku**, determines **fraud risk** using tr
 📊 **Chart:** Monthly **transaction amounts** based on **transaction type**  
 ![Sum of Transactions by Type and Month](Sum-of-Transactions-GroupedBy-Type,Month.png)
 
-### 5. **GitHub Repository Screenshot**
-📸 **Screenshot of Project Files in GitHub**  
-![GitHub Repository Screenshot](Screenshot-2025-01-28-155605.png)
+
 
 ---
 
