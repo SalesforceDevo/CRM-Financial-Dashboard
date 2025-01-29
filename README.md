@@ -107,7 +107,4 @@ A **Python Flask API**, hosted on **Heroku**, determines **fraud risk** using tr
 
 ---
 
-## Contributors
-👨‍💻 **[Your Name]**  
-📧 **your.email@example.com**  
-🔗 **[LinkedIn Profile](<your-linkedin-url>)**
+
