@@ -136,7 +136,37 @@ The fraud detection API follows predefined **business logic** to calculate the f
 ---
 
 
----
+## Advanced Reports & Dashboards in Salesforce
+
+I leveraged **my expertise in Salesforce Reports & Dashboards** to create **interactive visualizations** that provide actionable insights into **customer financial behavior and fraud detection trends**.
+
+### **Key Dashboard Insights:**
+1. **Fraud Trends Analysis**  
+   - Used **Fraud_Flag__c** to create a **row-level summary** to count flagged transactions.
+   - Grouped transactions by **month and type** using **bucket fields**.
+   - Helps in identifying **seasonal fraud trends**.
+
+2. **High-Risk Customer Segmentation**  
+   - Utilized **Risk_Score__c** with **formula fields** to categorize customers into **risk groups**.
+   - Created **bar charts grouped by age and city** to visualize **geographical fraud risks**.
+
+3. **Transaction Volume Breakdown**  
+   - **Formula fields** were used to calculate the **total sum of transactions** by type.
+   - **Row-level summaries** helped in aggregating **monthly transaction trends**.
+
+4. **Fraud Score-Based Review Reports**  
+   - Created reports that dynamically **highlight transactions exceeding fraud thresholds**.
+   - Designed **dashboard filters** for quick **drill-down analysis**.
+
+### **Salesforce Reporting Techniques Used:**
+- **Row-Level Summary Fields**: Aggregating fraud transactions & financial data.
+- **Formula Fields**: Categorizing customers based on **risk score brackets**.
+- **Bucket Fields**: Grouping transactions into **fraud risk categories**.
+- **Dashboard Filters**: Enabling **dynamic data exploration**.
+- **Conditional Formatting**: Highlighting **high-risk transactions**.
+
+💡 **This demonstrates my strong skills in Salesforce reporting and dashboard creation, making complex data more actionable and visually insightful!**
+
 
 ## Screenshots
 
