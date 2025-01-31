@@ -51,7 +51,7 @@ The MuleSoft integration consists of the following steps:
   - If **balance after transaction > 100** → `+20 points`.
 - **Final Calculation**:
   ```math
-  Risk_Score = (credit_utilization * 0.7) + transaction_score
+  Risk_Score = (creditutilization * 0.7) + transactionscore
   ```
 
 ### **Fraud Flag Calculation (Fraud_Flag__c)**
