@@ -9,7 +9,7 @@ export default class FraudTransactionPanel extends LightningElement {
     @track error;
     wiredData;
 
-    // Fetch fraud transactions
+    
     @wire(getFraudulentTransactions)
     wiredTransactions(result) {
         this.wiredData = result;
@@ -28,10 +28,10 @@ export default class FraudTransactionPanel extends LightningElement {
         }
     }
 
-    // Handle Approve or Reject action
+    
     handleRowAction(event) {
-        console.log('handleRowAction triggered!'); // Debugging log
-        console.log('Row Action Event:', JSON.stringify(event.detail, null, 2)); // Log event details
+        console.log('handleRowAction triggered!'); 
+        console.log('Row Action Event:', JSON.stringify(event.detail, null, 2)); 
 
         const transactionId = event.detail.row.Id;
         const actionType = event.detail.action.name === 'approve' ? 'Approved' : 'Rejected';
@@ -39,15 +39,15 @@ export default class FraudTransactionPanel extends LightningElement {
         console.log('Transaction ID:', transactionId);
         console.log('Action Type:', actionType);
 
-        updateFraudStatus({ transactionId: transactionId, status: actionType }) // ✅ Ensure correct parameter format
+        updateFraudStatus({ transactionId: transactionId, status: actionType }) // 
             .then(result => {
                 if (result === 'Success') {
                     this.showToast('Success', `Transaction ${actionType}`, 'success');
 
-                    // Remove the reviewed transaction from UI before refreshing
+                    
                     this.fraudTransactions = this.fraudTransactions.filter(txn => txn.Id !== transactionId);
 
-                    // Force refresh of Apex data
+                    
                     return refreshApex(this.wiredData);
                 } else {
                     this.showToast('Error', result, 'error');
@@ -59,7 +59,7 @@ export default class FraudTransactionPanel extends LightningElement {
             });
     }
 
-    // Show toast message
+    
     showToast(title, message, variant) {
         const event = new ShowToastEvent({
             title: title,
@@ -69,7 +69,7 @@ export default class FraudTransactionPanel extends LightningElement {
         this.dispatchEvent(event);
     }
 
-    // Define columns with Approve & Reject row actions
+    
     columns = [
         { label: 'Transaction Name', fieldName: 'Name', type: 'text' },
         { label: 'Amount', fieldName: 'Transaction_Amount__c', type: 'currency' },

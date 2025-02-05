@@ -26,10 +26,10 @@ public with sharing class FraudTransactionController {
             
             Transactions__c txn = txnList[0];
 
-            // Update transaction status
+            
             txn.Approval_Status__c = status;
-            txn.Fraud_Flag__c = (status == 'Rejected'); // If rejected, keep flagged; if approved, remove fraud flag
-            txn.Checked__c = true; // Mark as reviewed
+            txn.Fraud_Flag__c = (status == 'Rejected'); 
+            txn.Checked__c = true; 
 
             update txn;
             return 'Success';
