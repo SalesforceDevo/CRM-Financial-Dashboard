@@ -17,6 +17,14 @@ global class ChurnPredictionBatch implements Database.Batchable<SObject> {
     }
 
     global void finish(Database.BatchableContext bc) {
-        System.debug(' Churn Prediction Batch Completed Successfully.');
+        System.debug('Churn Prediction Batch Completed Successfully.');
+
+        // Trigger email sending after batch completion
+        try {
+            ChurnRiskEmailSender.sendEmailsToHighRiskCustomers();
+            System.debug('Emails sent successfully after churn prediction batch.');
+        } catch (Exception e) {
+            System.debug('Error sending emails: ' + e.getMessage());
+        }
     }
 }
