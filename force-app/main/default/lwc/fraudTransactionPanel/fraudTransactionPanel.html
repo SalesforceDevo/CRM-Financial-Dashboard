@@ -1,0 +1,20 @@
+<template>
+    <lightning-card title="Fraud Transaction Review Panel">
+        <template if:true={fraudTransactions}>
+            <lightning-datatable
+                key-field="Id"
+                data={fraudTransactions}
+                columns={columns}
+                onrowaction={handleRowAction}>
+            </lightning-datatable>
+        </template>
+
+        <template if:true={error}>
+            <p>Error loading fraud transactions: {error}</p>
+        </template>
+
+        <template if:false={fraudTransactions}>
+            <p class="slds-text-align_center">No fraudulent transactions found.</p>
+        </template>
+    </lightning-card>
+</template>
