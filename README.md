@@ -77,9 +77,7 @@ The MuleSoft integration consists of the following steps:
 
 ---
 
-## How Risk_Score__c and Fraud_Flag__c Are Calculated
-
-## How Risk_Score__c,Credit Utilization, Loan Eligibility and  Fraud_Flag__c Are Calculated
+## How Risk_Score__c, Credit Utilization, Loan Eligibility and  Fraud_Flag__c Are Calculated
 
 ### **Risk Score Calculation**
 - **Credit Utilization**: Calculated as `(Credit Card Balance / Credit Limit) * 100`. This metric reflects how much of their available credit the customer is using, which is a critical indicator of financial health.
