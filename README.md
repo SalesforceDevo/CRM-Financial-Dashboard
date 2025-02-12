@@ -98,9 +98,24 @@ The MuleSoft integration consists of the following steps:
 - **Loan Eligibility** is determined based on the calculated **Risk Score** and **Credit Utilization**:
   - **Eligible**: If the **Risk Score is greater than 80** and **Credit Utilization is less than 30%**.
   - **Not Eligible**: Otherwise. This criteria ensures that loans are granted to customers who demonstrate financial stability and a low risk of default.
-  
 
-### **Fraud Flag Calculation (Fraud_Flag__c)**
+### **Churn Prediction Logic**
+
+The churn prediction logic identifies customers at risk of disengagement by analyzing their transaction patterns and frequency:
+
+- **Customer Data Retrieval**: For each customer specified by their Salesforce ID, the system retrieves the most recent transaction records.
+- **Transaction Analysis**:
+  - The algorithm examines the dates and types of the last transactions for each customer.
+  - It counts the number of withdrawals and deposits to assess transaction behavior.
+- **Churn Risk Assessment**:
+  - **High Risk**: If the most recent transaction date is over a year ago (more than 365 days) or if withdrawals outnumber deposits and the current risk level is already 'Medium'.
+  - **Medium Risk**: If the most recent transaction occurred between 30 and 365 days ago.
+  - **Low Risk**: If the last transaction was less than 30 days ago and deposits are equal to or more than withdrawals.
+- **Update Customer Records**: The system updates each customer's record in Salesforce with the calculated churn risk level (`Churn_Risk__c`), which can trigger targeted marketing strategies to enhance retention.
+
+This method ensures timely identification of customers who may require additional engagement efforts to prevent churn, thus helping to maintain a stable customer base.  
+
+### **Fraud Flag Calculation Logic (Fraud_Flag__c)**
 - Fraud detection API evaluates:
   - **Transaction Type** (`Deposit`, `Withdrawal`, `Transfer`)
   - **Transaction Amount**
