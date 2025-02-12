@@ -12,10 +12,14 @@ The backend functionality is extended with an **external Flask API** deployed on
 
 
 ### Key Features:
-- **Oracle-Salesforce Integration**: Data is synchronized from **Oracle database** to Salesforce using **MuleSoft**.
-- **Risk Score Calculation**: **Apex batch logic** evaluates customer **financial behavior** and assigns a **Risk_Score__c**.
-- **Fraud Detection**: **Python Flask API** flags potential **fraudulent transactions** based on predefined rules.
-- **Salesforce Dashboards**: Interactive reports for **fraud trends and high-risk customers**.
+- **Oracle-Salesforce Integration**: Integrates **Oracle database** data into Salesforce using **MuleSoft** for real-time data synchronization, supporting accurate and up-to-date financial analysis.
+- **Comprehensive Risk Management**: Utilizes sophisticated **Apex classes** to compute critical metrics such as **customer financial risk scores**, **credit utilization**, **loan eligibility**, **fraud flags**, and **churn risk**, essential for assessing risk and enhancing customer retention strategies.
+- **Lightning Web Components for Enhanced Interaction**: Includes two **LWCs** specifically designed for operational efficiency:
+  - A component for financial officers to review and approve or reject potentially fraudulent transactions.
+  - A component to manage the approval processes for loans in pending status, streamlining decision-making and enhancing user interaction.
+- **Fraud Detection via External API**: Employs an **external Flask API** hosted on **Heroku** to analyze transaction data and identify potential fraud, seamlessly integrated for effective fraud management within Salesforce.
+- **Actionable Insights with Salesforce Dashboards**: Features well-designed dashboards that provide actionable insights through interactive reports on **fraud trends, risk assessments, and loan management**, helping financial services firms make informed decisions quickly.
+
 
 ---
 
