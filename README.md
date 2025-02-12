@@ -251,7 +251,7 @@ The **Fraud Transaction Review Panel** is a Salesforce Lightning Web Component (
 
 - **Errors**: Displayed to the user through the interface if there is an issue fetching or updating transactions.
 
-  # Loan Status Manager
+# Loan Status Manager
 
 ## Overview
 
