@@ -41,6 +41,10 @@ The MuleSoft integration consists of the following steps:
    - **Classes Used:**
      - `FinancialRiskCalculator.cls`
      - `FinancialRiskBatch.cls`
+     - `ScheduleFinancialRiskBatch.cls` for scheduling the batch process to run at specified intervals.
+   - **Test Class:**
+     - `FinancialRiskCalculatorTest.cls` ensures comprehensive testing of the risk calculation logic.
+
 2. **Fraud Detection**:
    - Uses **Apex Queueable & Batch classes** to call an **external Flask API** hosted on **Heroku**.
    - API returns a **fraud score**, and transactions are flagged accordingly in **Salesforce (Fraud_Flag__c)**.
