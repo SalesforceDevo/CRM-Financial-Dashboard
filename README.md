@@ -216,6 +216,41 @@ python app.py
 heroku create
 git push heroku main
 ```
+# Fraud Transaction Review Panel logic
+
+## Overview
+
+The **Fraud Transaction Review Panel** is a Salesforce Lightning Web Component (LWC) that enables users to manage transactions flagged as potentially fraudulent. The component integrates with Salesforce data using Apex controllers to fetch and update these transactions, providing a user-friendly interface for managing fraud alerts.
+
+## Functionality
+
+### Data Handling
+
+- **Fetching Transactions**: Utilizes the `getFraudulentTransactions` Apex method to retrieve a list of transactions where `Fraud_Flag__c` is true and `Checked__c` is false, indicating unreviewed, potentially fraudulent transactions.
+
+### User Interface
+
+- **Display**: Transactions are displayed in a `lightning-datatable` which includes columns for transaction details such as name, amount, type, and status.
+- **Actions**: Each row in the datatable includes actionable buttons for 'Approve' and 'Reject', allowing users to resolve each fraud alert.
+
+### Processing Actions
+
+- **Action Handling**: When an action button is clicked, the `handleRowAction` function is triggered, determining whether the transaction was approved or rejected based on user input.
+- **Update Transactions**: Calls the `updateFraudStatus` Apex function to update the `Fraud_Flag__c`, `Approval_Status__c`, and `Checked__c` fields based on the action taken, marking the transaction as reviewed and setting its approval status.
+
+### Notifications
+
+- **Feedback**: Uses the `ShowToastEvent` to provide feedback to the user after each action, indicating successful updates or errors.
+
+## Apex Controller
+
+- **Data Fetch Logic**: The `getFraudulentTransactions` method filters transactions based on fraud flags and checked status, sorted by amount.
+- **Update Logic**: The `updateFraudStatus` method handles the updating of transaction records in Salesforce based on user actions from the component.
+
+## Error Handling
+
+- **Errors**: Displayed to the user through the interface if there is an issue fetching or updating transactions.
+
 
 
 ---
