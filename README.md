@@ -251,12 +251,58 @@ The **Fraud Transaction Review Panel** is a Salesforce Lightning Web Component (
 
 - **Errors**: Displayed to the user through the interface if there is an issue fetching or updating transactions.
 
+  # Loan Status Manager
+
+## Overview
+
+The **Loan Status Manager** is a Salesforce Lightning Web Component (LWC) designed to allow users to manage the status of loan applications. It provides a streamlined interface for viewing and updating loan statuses, using Salesforce Apex to interact with loan records.
+
+## Component Structure
+
+### HTML Template
+
+- **Lightning Card**: The main container with a title "Loan Status Manager" and a custom icon. It encloses the datatable.
+- **Lightning Datatable**: Displays loan data with columns for loan details such as name, amount, interest rate, term, type, and status. It also includes dynamic row actions for loans with a status of 'Pending' to approve or reject the loan.
+- **Error Handling**: Displays errors if there is an issue fetching the loans from the server.
+
+### JavaScript Controller
+
+#### Data Fetching
+
+- **Apex Wire Method**: Uses the `@wire` service to call the `getLoans` method from `LoanController`, fetching the latest loans ordered by creation date.
+- **Data Mapping**: Maps the fetched data to include dynamic row actions for approving or rejecting loans, based on the loan's current status.
+
+#### Row Actions
+
+- **Dynamic Actions**: Depending on the loan's status, 'Approve' and 'Reject' actions are added for loans marked as 'Pending'.
+- **Action Handler**: Implements `handleRowAction` to process user actions (approve/reject), updating the loan's status via the `updateLoanStatus` Apex method.
+
+#### Notifications
+
+- **Toast Notifications**: Utilizes the `ShowToastEvent` to provide feedback on the success or failure of loan status updates.
+
+### Apex Controller
+
+#### Loan Retrieval
+
+- **getLoans Method**: Fetches a list of all loans, sorted by their creation date, including details like the loan amount, status, interest rate, term, type, and associated customer ID.
+
+#### Loan Update
+
+- **updateLoanStatus Method**: Receives a loan ID and a new status ('Approved' or 'Rejected'). Updates the `Loan_Status__c` field of the specified loan and commits the change to the database.
+
+## Error Handling
+
+- **Apex Methods**: Both `getLoans` and `updateLoanStatus` include error handling to manage and relay issues that might occur during data fetching or updating.
+
+
+
 
 
 ---
 
 
-## Advanced Reports & Dashboards in Salesforce
+# Advanced Reports & Dashboards in Salesforce
 
 I leveraged **my expertise in Salesforce Reports & Dashboards** to create **interactive visualizations** that provide actionable insights into **customer financial behavior and fraud detection trends**.
 
