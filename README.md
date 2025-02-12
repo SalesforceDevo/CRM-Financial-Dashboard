@@ -79,18 +79,26 @@ The MuleSoft integration consists of the following steps:
 
 ## How Risk_Score__c and Fraud_Flag__c Are Calculated
 
+## How Risk_Score__c,Credit Utilization, Loan Eligibility and  Fraud_Flag__c Are Calculated
+
 ### **Risk Score Calculation**
-- **Credit Utilization**: `(Credit Card Balance / Credit Limit) * 0.7`
+- **Credit Utilization**: Calculated as `(Credit Card Balance / Credit Limit) * 100`. This metric reflects how much of their available credit the customer is using, which is a critical indicator of financial health.
 - **Transaction Type Weighting**:
-  - **Withdrawals**: `-50%` of transaction amount.
-  - **Transfers**: `+30%` of transaction amount.
-  - **Deposits**: `+100%` of transaction amount.
+  - **Withdrawals**: Reduces the score by `50%` of the transaction amount.
+  - **Transfers**: Increases the score by `30%` of the transaction amount.
+  - **Deposits**: Increases the score by `100%` of the transaction amount.
 - **Account Balance Consideration**:
-  - If **balance after transaction < 100** → `-50 points`.
-  - If **balance after transaction > 100** → `+20 points`.
+  - Deduct `50 points` if the **balance after transaction is less than $100**.
+  - Add `20 points` if the **balance after transaction is more than $100**.
 - **Final Calculation**:
+  - The **Risk Score** combines the credit utilization and transaction impacts:
   ```math
-  RiskScore = (creditutilization * 0.7) + transactionscore
+  RiskScore = (credit utilization * 0.7) + transaction score
+ore = (creditutilization * 0.7) + transactionscore
+### **Loan Eligibility Determination**
+- **Loan Eligibility** is determined based on the calculated **Risk Score** and **Credit Utilization**:
+  - **Eligible**: If the **Risk Score is greater than 80** and **Credit Utilization is less than 30%**.
+  - **Not Eligible**: Otherwise. This criteria ensures that loans are granted to customers who demonstrate financial stability and a low risk of default.
   ```
 
 ### **Fraud Flag Calculation (Fraud_Flag__c)**
