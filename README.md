@@ -1,7 +1,15 @@
 # CRM Financial Dashboard
 
 ## Overview
-This project demonstrates the development of a **Customer Relationship Management (CRM) dashboard** in **Salesforce** for financial services companies. It integrates **Oracle database** data into Salesforce using **MuleSoft**, calculates **customer financial risk scores**, and detects **fraudulent transactions** using an **external Flask API** deployed on **Heroku**. Additionally, **Salesforce dashboards** visualize fraud and risk insights.
+
+This project delivers a powerful **Customer Relationship Management (CRM) dashboard** in **Salesforce** tailored for financial services companies. Through a robust integration with an **Oracle database** via **MuleSoft**, it enables real-time data access and synchronization within Salesforce. The system is fortified with sophisticated **Apex classes** that compute critical metrics such as **customer financial risk scores**, **credit utilization**, **loan eligibility**, **fraud flags**, and **churn risk**. These metrics are crucial for dynamic risk management and customer retention strategies.
+
+Key interactions within the CRM are facilitated by two purpose-built **Lightning Web Components (LWC)**: one allows financial officers to manually review and approve potentially fraudulent transactions, and the other manages the approval process for loans that are pending decision. These components significantly enhance operational responsiveness and user experience.
+
+The backend functionality is extended with an **external Flask API** deployed on **Heroku**, designed to analyze transaction data and flag potential fraud. This integration provides seamless and efficient fraud detection capabilities within the dashboard.
+
+**Salesforce dashboards** are efficiently designed to provide actionable insights, showcasing the results of the integrated data analysis with reports on fraud trends, risk assessments, and loan management in an interactive format.
+
 
 ### Key Features:
 - **Oracle-Salesforce Integration**: Data is synchronized from **Oracle database** to Salesforce using **MuleSoft**.
