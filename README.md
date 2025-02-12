@@ -37,7 +37,7 @@ The MuleSoft integration consists of the following steps:
 
 ### 2. Apex-Based Risk, Fraud Analysis and Churn Prediction
 1. **Financial Risk Calculation**:
-   - Evaluates a customer’s **credit utilization, transaction types, and account balances** to determine a **Risk Score**.
+   - Evaluates a customer’s **credit utilization, Loan Eligibilty of a customer, transaction types, and account balances** to determine a **Risk Score**.
    - **Classes Used:**
      - `FinancialRiskCalculator.cls`
      - `FinancialRiskBatch.cls`
@@ -60,6 +60,7 @@ The MuleSoft integration consists of the following steps:
      - `ScheduleChurnPredictionBatch.cls` for scheduling the batch process to assess churn risks at specified intervals.
    - **Email Notification System:**
      - `ChurnRiskEmailSender.cls` sends targeted emails to customers identified as high-risk, enhancing customer retention efforts.
+       
 ### 3. LWC Based Components for Interactive Functionality
 1. **Fraud Transaction Review Panel**:
    - This component allows financial officers to manually review and approve or reject potentially fraudulent transactions directly from the dashboard.
