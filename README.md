@@ -94,12 +94,12 @@ The MuleSoft integration consists of the following steps:
   - The **Risk Score** combines the credit utilization and transaction impacts:
   ```math
   RiskScore = (credit utilization * 0.7) + transaction score
-ore = (creditutilization * 0.7) + transactionscore
+
 ### **Loan Eligibility Determination**
 - **Loan Eligibility** is determined based on the calculated **Risk Score** and **Credit Utilization**:
   - **Eligible**: If the **Risk Score is greater than 80** and **Credit Utilization is less than 30%**.
   - **Not Eligible**: Otherwise. This criteria ensures that loans are granted to customers who demonstrate financial stability and a low risk of default.
-  ```
+  
 
 ### **Fraud Flag Calculation (Fraud_Flag__c)**
 - Fraud detection API evaluates:
