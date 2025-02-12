@@ -1,0 +1,15 @@
+<template>
+    <lightning-card title="Loan Status Manager" icon-name="custom:custom63">
+        <lightning-datatable
+            key-field="Id"
+            data={loans}
+            columns={columns}
+            onrowaction={handleRowAction}
+            hide-checkbox-column="true"
+            resize-column-disabled="true">
+        </lightning-datatable>
+        <template if:true={error}>
+            <p>{error}</p>
+        </template>
+    </lightning-card>
+</template>
