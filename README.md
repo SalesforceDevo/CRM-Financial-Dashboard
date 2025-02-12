@@ -60,7 +60,20 @@ The MuleSoft integration consists of the following steps:
      - `ScheduleChurnPredictionBatch.cls` for scheduling the batch process to assess churn risks at specified intervals.
    - **Email Notification System:**
      - `ChurnRiskEmailSender.cls` sends targeted emails to customers identified as high-risk, enhancing customer retention efforts.
+### 3. LWC Based Components for Interactive Functionality
+1. **Fraud Transaction Review Panel**:
+   - This component allows financial officers to manually review and approve or reject potentially fraudulent transactions directly from the dashboard.
+   - **Component Details**:
+     - **JavaScript Controller**: `fraudTransactionPanel.js` 
+     - **HTML Template**: `fraudTransactionPanel.html` 
+     - **Apex Controller**: `FraudTransactionController.cls` 
 
+2. **Loan Status Manager Panel**:
+   - Enables loan officers to manage and update the approval status of loans that are in pending status.
+   - **Component Details**:
+     - **JavaScript Controller**: `loanStatusManager.js` 
+     - **HTML Template**: `loanStatusManager.html` 
+     - **Apex Controller**: `LoanController.cls`
 
 ---
 
