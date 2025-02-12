@@ -35,7 +35,7 @@ The MuleSoft integration consists of the following steps:
 4. **Batch Processing**:
    - Processes large data efficiently in Salesforce.
 
-### 2. Apex-Based Risk and Fraud Analysis
+### 2. Apex-Based Risk, Fraud Analysis and Churn Prediction
 1. **Financial Risk Calculation**:
    - Evaluates a customer’s **credit utilization, transaction types, and account balances** to determine a **Risk Score**.
    - **Classes Used:**
@@ -51,6 +51,16 @@ The MuleSoft integration consists of the following steps:
    - **Classes Used:**
      - `FraudDetectionBatch.cls`
      - `FraudDetectionQueueable.cls`
+
+3. **Churn Risk Prediction**:
+   - Analyzes customer transaction patterns and activity levels to predict churn risk, updating **Churn_Risk__c** and engaging customers with targeted retention strategies.
+   - **Classes Used:**
+     - `ChurnPrediction.cls`
+     - `ChurnPredictionBatch.cls`
+     - `ScheduleChurnPredictionBatch.cls` for scheduling the batch process to assess churn risks at specified intervals.
+   - **Email Notification System:**
+     - `ChurnRiskEmailSender.cls` sends targeted emails to customers identified as high-risk, enhancing customer retention efforts.
+
 
 ---
 
