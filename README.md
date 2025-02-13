@@ -1,6 +1,6 @@
 # CRM Financial Dashboard
-
-
+## Project Overview
+![Project Overview](Blank%20diagram.png)
 
 This project delivers a powerful **Customer Relationship Management (CRM) dashboard** in **Salesforce** tailored for financial services companies. Through a robust integration with an **Oracle database** via **MuleSoft**, it enables real-time data access and synchronization within Salesforce. The system is fortified with sophisticated **Apex classes** that compute critical metrics such as **customer financial risk scores**, **credit utilization**, **loan eligibility**, **fraud flags**, and **churn risk**. These metrics are crucial for dynamic risk management and customer retention strategies.
 
