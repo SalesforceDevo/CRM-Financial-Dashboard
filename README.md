@@ -250,6 +250,8 @@ The **Fraud Transaction Review Panel** is a Salesforce Lightning Web Component (
 
 - **Errors**: Displayed to the user through the interface if there is an issue fetching or updating transactions.
 
+  ![Project Overview](FraudTransactionPanel.png)
+
 # Loan Status Manager
 
 ## Overview
@@ -294,7 +296,7 @@ The **Loan Status Manager** is a Salesforce Lightning Web Component (LWC) design
 
 - **Apex Methods**: Both `getLoans` and `updateLoanStatus` include error handling to manage and relay issues that might occur during data fetching or updating.
 
-
+![Project Overview](LoanApprovalPanel.png)
 
 
 
