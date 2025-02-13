@@ -9,6 +9,7 @@ Key interactions within the CRM are facilitated by two purpose-built **Lightning
 The backend functionality is extended with an **external Flask API** deployed on **Heroku**, designed to analyze transaction data and flag potential fraud. This integration provides seamless and efficient fraud detection capabilities within the dashboard.
 
 **Salesforce dashboards** are efficiently designed to provide actionable insights, showcasing the results of the integrated data analysis with reports on fraud trends, risk assessments, and loan management in an interactive format.
+![Project Overview](Blank%20diagram.jpeg)
 
 
 ### Key Features:
