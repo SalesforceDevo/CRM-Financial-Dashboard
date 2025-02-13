@@ -112,7 +112,9 @@ The churn prediction logic identifies customers at risk of disengagement by anal
   - **Low Risk**: If the last transaction was less than 30 days ago and deposits are equal to or more than withdrawals.
 - **Update Customer Records**: The system updates each customer's record in Salesforce with the calculated churn risk level (`Churn_Risk__c`), which can trigger targeted marketing strategies to enhance retention.
 
-This method ensures timely identification of customers who may require additional engagement efforts to prevent churn, thus helping to maintain a stable customer base.  
+This method ensures timely identification of customers who may require additional engagement efforts to prevent churn, thus helping to maintain a stable customer base. 
+
+![Risk_Score, Credit_Utilization,Churn_Score,LoanEligibility](Riskscore,LE,CU,Churn.png)
 
 ### **Fraud Flag Calculation Logic (Fraud_Flag__c)**
 - Fraud detection API evaluates:
@@ -192,6 +194,9 @@ The fraud detection API follows predefined **business logic** to calculate the f
 ### **Fraud Score Interpretation:**
 - **`fraudScore <= 70`** → `"decision": "Approve"`
 - **`fraudScore > 70`** → `"decision": "Review"`
+
+![Fraud_Flag](Fraud_flag.png)
+
   ## How to Deploy & Use
 
 ### **1. Clone the API Repository**
@@ -250,7 +255,7 @@ The **Fraud Transaction Review Panel** is a Salesforce Lightning Web Component (
 
 - **Errors**: Displayed to the user through the interface if there is an issue fetching or updating transactions.
 
-  ![Project Overview](FraudTransactionPanel.png)
+  ![Fraud_Transaction_Panel_LWC](FraudTransactionPanel.png)
 
 # Loan Status Manager
 
@@ -296,7 +301,7 @@ The **Loan Status Manager** is a Salesforce Lightning Web Component (LWC) design
 
 - **Apex Methods**: Both `getLoans` and `updateLoanStatus` include error handling to manage and relay issues that might occur during data fetching or updating.
 
-![Project Overview](LoanApprovalPanel.png)
+![Loan_Status_Manager_LWC](LoanApprovalPanel.png)
 
 
 
